@@ -235,13 +235,13 @@
 
     <div class="wrap">
       <div class="topbar">
-        <span class="pill" id="roundPill">💥 Card <span id="roundNow">1</span> of 12</span>
+        <span class="pill" id="roundPill">💥 Card <span id="roundNow">1</span> of 50</span>
         <span class="pill" id="scorePill"><span class="star-ico" aria-hidden="true">⭐</span> <span id="scoreNow">0</span> points</span>
       </div>
-      <div class="progress-shell" role="progressbar" aria-label="Game progress" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" id="progressBar">
+      <div class="progress-shell" role="progressbar" aria-label="Game progress" aria-valuemin="0" aria-valuemax="50" aria-valuenow="0" id="progressBar">
         <div class="progress-fill" id="progressFill"></div>
       </div>
-      <p class="progress-label" id="progressLabel">Boom through all 12 cards! 💥</p>
+      <p class="progress-label" id="progressLabel">Boom through all 50 cards! 💥</p>
 
       <main id="gameArea">
         <section class="boom-card" id="boomCard">
@@ -249,7 +249,7 @@
           <h1 class="boom-question" id="boomQuestion">What is another word for <span class="target">sweet</span>?</h1>
           <span class="boom-pic" id="boomPic" aria-hidden="true">🍬</span>
           <div class="answers" id="answers" role="group" aria-label="Answer choices"></div>
-          <p class="card-count" id="cardCount">1 / 12</p>
+          <p class="card-count" id="cardCount">1 / 50</p>
         </section>
 
         <div class="feedback" id="feedback" aria-live="polite"></div>
@@ -279,23 +279,63 @@
 
         // Synonym Boom Cards — TheraPlatform style:
         // "What is another word for X?" + picture + 4 choices.
-        // Round 1 is the REAL TheraPlatform item (sweet → sugary).
+        // 9 REAL TheraPlatform items (from Perla's screenshots 2026-10-21;
+        // "sleep" skipped — choices were cut off in the screenshot)
+        // + 41 standard pairs in the same style = 50 cards, all different words.
         var CARDS = [
-          // EASY
+          // EASY (16)
           { level: "easy", word: "sweet", emoji: "🍬", answer: "sugary", others: ["candy", "sucker", "lollipop"] },
+          { level: "easy", word: "friend", emoji: "👭", answer: "buddy", others: ["sister", "neighbor", "study"] },
+          { level: "easy", word: "sick", emoji: "🤒", answer: "ill", others: ["nose", "tissue", "sneeze"] },
           { level: "easy", word: "happy", emoji: "😊", answer: "glad", others: ["smile", "party", "fun"] },
           { level: "easy", word: "big", emoji: "🐘", answer: "large", others: ["tall", "long", "wide"] },
           { level: "easy", word: "fast", emoji: "🏃", answer: "quick", others: ["run", "race", "car"] },
-          // MEDIUM
+          { level: "easy", word: "small", emoji: "🐭", answer: "tiny", others: ["short", "thin", "baby"] },
+          { level: "easy", word: "hot", emoji: "☀️", answer: "warm", others: ["sun", "fire", "summer"] },
+          { level: "easy", word: "sad", emoji: "😢", answer: "unhappy", others: ["cry", "tears", "frown"] },
+          { level: "easy", word: "new", emoji: "🆕", answer: "fresh", others: ["old", "young", "first"] },
+          { level: "easy", word: "gift", emoji: "🎁", answer: "present", others: ["box", "bow", "party"] },
+          { level: "easy", word: "house", emoji: "🏠", answer: "home", others: ["door", "roof", "room"] },
+          { level: "easy", word: "laugh", emoji: "😂", answer: "giggle", others: ["funny", "joke", "smile"] },
+          { level: "easy", word: "cry", emoji: "😭", answer: "sob", others: ["tears", "sad", "frown"] },
+          { level: "easy", word: "smile", emoji: "😁", answer: "grin", others: ["happy", "teeth", "laugh"] },
+          { level: "easy", word: "kind", emoji: "💛", answer: "nice", others: ["hug", "share", "gentle"] },
+          // MEDIUM (18)
+          { level: "medium", word: "infant", emoji: "👶", answer: "baby", others: ["young", "child", "little"] },
+          { level: "medium", word: "draw", emoji: "✏️", answer: "sketch", others: ["write", "bicycle", "color"] },
+          { level: "medium", word: "talk", emoji: "💬", answer: "chat", others: ["discussing", "spoken", "communication"] },
+          { level: "medium", word: "same", emoji: "🧁", answer: "equal", others: ["share", "brownie", "size"] },
           { level: "medium", word: "cold", emoji: "❄️", answer: "chilly", others: ["ice", "snow", "winter"] },
-          { level: "medium", word: "smart", emoji: "🧠", answer: "clever", others: ["book", "school", "test"] },
           { level: "medium", word: "funny", emoji: "🤣", answer: "silly", others: ["laugh", "joke", "clown"] },
-          { level: "medium", word: "brave", emoji: "🦁", answer: "courageous", others: ["strong", "hero", "shield"] },
-          // HARD
+          { level: "medium", word: "mad", emoji: "😠", answer: "angry", others: ["shout", "fight", "storm"] },
+          { level: "medium", word: "beautiful", emoji: "🌸", answer: "pretty", others: ["flower", "dress", "picture"] },
+          { level: "medium", word: "begin", emoji: "🏁", answer: "start", others: ["first", "open", "go"] },
+          { level: "medium", word: "end", emoji: "🔚", answer: "finish", others: ["last", "done", "over"] },
+          { level: "medium", word: "quiet", emoji: "🤫", answer: "silent", others: ["shh", "calm", "soft"] },
+          { level: "medium", word: "loud", emoji: "📢", answer: "noisy", others: ["shout", "drum", "bang"] },
+          { level: "medium", word: "wet", emoji: "💧", answer: "damp", others: ["rain", "pool", "splash"] },
+          { level: "medium", word: "clean", emoji: "🧼", answer: "tidy", others: ["soap", "wash", "neat"] },
+          { level: "medium", word: "dirty", emoji: "🧹", answer: "messy", others: ["mud", "stain", "trash"] },
+          { level: "medium", word: "sleepy", emoji: "😪", answer: "drowsy", others: ["bed", "yawn", "nap"] },
+          { level: "medium", word: "job", emoji: "💼", answer: "work", others: ["office", "boss", "money"] },
+          { level: "medium", word: "ocean", emoji: "🌊", answer: "sea", others: ["wave", "beach", "fish"] },
+          // HARD (16)
+          { level: "hard", word: "select", emoji: "👗", answer: "pick", others: ["dress", "pink", "wear"] },
+          { level: "hard", word: "courageous", emoji: "🪖", answer: "brave", others: ["soldier", "army", "commander"] },
           { level: "hard", word: "tired", emoji: "😴", answer: "weary", others: ["sleep", "bed", "yawn"] },
-          { level: "hard", word: "angry", emoji: "😠", answer: "furious", others: ["shout", "fight", "storm"] },
-          { level: "hard", word: "begin", emoji: "🏁", answer: "start", others: ["first", "open", "go"] },
-          { level: "hard", word: "rich", emoji: "💰", answer: "wealthy", others: ["money", "gold", "cash"] }
+          { level: "hard", word: "rich", emoji: "💰", answer: "wealthy", others: ["money", "gold", "cash"] },
+          { level: "hard", word: "smart", emoji: "🧠", answer: "clever", others: ["book", "school", "test"] },
+          { level: "hard", word: "mean", emoji: "😒", answer: "rude", others: ["bully", "frown", "fight"] },
+          { level: "hard", word: "road", emoji: "🛣️", answer: "street", others: ["car", "drive", "sign"] },
+          { level: "hard", word: "look", emoji: "👀", answer: "see", others: ["eyes", "glasses", "blink"] },
+          { level: "hard", word: "yell", emoji: "📣", answer: "shout", others: ["loud", "voice", "echo"] },
+          { level: "hard", word: "push", emoji: "🫷", answer: "shove", others: ["hand", "door", "cart"] },
+          { level: "hard", word: "pull", emoji: "🪢", answer: "tug", others: ["rope", "wagon", "hands"] },
+          { level: "hard", word: "throw", emoji: "⚾", answer: "toss", others: ["ball", "catch", "pitch"] },
+          { level: "hard", word: "catch", emoji: "🧤", answer: "grab", others: ["ball", "mitt", "hold"] },
+          { level: "hard", word: "fix", emoji: "🔧", answer: "repair", others: ["tool", "broken", "glue"] },
+          { level: "hard", word: "break", emoji: "💔", answer: "snap", others: ["crack", "crash", "smash"] },
+          { level: "hard", word: "jump", emoji: "🐇", answer: "leap", others: ["run", "skip", "bounce"] }
         ];
         var LEVEL_LABELS = { easy: "⭐ EASY", medium: "💪 MEDIUM", hard: "🔥 HARD" };
         var TOTAL = CARDS.length;
@@ -354,9 +394,9 @@
           var pct = Math.round((done / TOTAL) * 100);
           el.progressFill.style.width = pct + "%";
           el.progressBar.setAttribute("aria-valuenow", done);
-          if (done >= TOTAL) el.progressLabel.textContent = "All 12 boom cards done! 🎉";
-          else if (done === 0) el.progressLabel.textContent = "Boom through all 12 cards! 💥";
-          else el.progressLabel.textContent = done + " of 12 boom cards done! 💥";
+          if (done >= TOTAL) el.progressLabel.textContent = "All 50 boom cards done! 🎉";
+          else if (done === 0) el.progressLabel.textContent = "Boom through all 50 cards! 💥";
+          else el.progressLabel.textContent = done + " of 50 boom cards done! 💥";
         }
 
         /* ---------- Confetti (hand-rolled, no library) ---------- */
@@ -571,7 +611,7 @@
 
           if (stars === 3) el.winMessage.textContent = "WOW! You boomed almost every card on the first try! 🌟";
           else if (stars === 2) el.winMessage.textContent = "Great booming, synonym superstar! 🌟";
-          else el.winMessage.textContent = "You boomed all 12 cards — great practicing! 🌟";
+          else el.winMessage.textContent = "You boomed all 50 cards — great practicing! 🌟";
 
           el.friendsRecap.innerHTML = "";
           rounds.forEach(function (r) {
